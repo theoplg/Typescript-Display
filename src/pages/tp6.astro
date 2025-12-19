@@ -1,0 +1,161 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout>
+  <h2>TP6 : CSS flexbox</h2>
+
+  <section class="readme">
+    <h3>Comment j'ai réalisé ce TP</h3>
+    <p>Ce TP explore plusieurs cas d’usage de Flexbox :</p>
+    <ul>
+      <li><strong>flexible1</strong> : menu horizontal avec espacement entre les éléments.</li>
+      <li><strong>flexible2</strong> : éléments de taille égale grâce à <code>flex: 1</code>.</li>
+      <li><strong>flexible2(plusgros)</strong> : un élément occupe 2 fois plus d’espace avec <code>flex: 2</code>.</li>
+      <li><strong>flexible3</strong> : centrage total dans un conteneur.</li>
+      <li><strong>flexible4</strong> : une liste en retour à la ligne avec <code>flex-wrap</code>.</li>
+    </ul>
+  </section>
+
+  <div class="code-tabs">
+    <button class="active-tab" data-tab="f1">flexible1.html</button>
+    <button data-tab="f2">flexible2.css</button>
+    <button data-tab="f2b">flexible2(plusgros).css</button>
+    <button data-tab="f3">flexible3.css</button>
+    <button data-tab="f4">flexible4.css</button>
+  </div>
+
+  <pre id="f1" class="code-block active"></pre>
+  <pre id="f2" class="code-block"></pre>
+  <pre id="f2b" class="code-block"></pre>
+  <pre id="f3" class="code-block"></pre>
+  <pre id="f4" class="code-block"></pre>
+
+  <button id="launch-frame">Lancer le TP</button>
+  <div class="browser-mockup" style="display: none;" id="browser-container">
+    <div class="browser-header">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+      <span class="url-bar">http://localhost:3000</span>
+    </div>
+    <iframe id="tp6-frame" class="browser-frame"></iframe>
+  </div>
+
+  <script type="module" defer>
+    async function loadFile(tab, path) {
+      const res = await fetch(path);
+      const code = await res.text();
+      document.getElementById(tab).textContent = code;
+    }
+
+    loadFile('f1', '/data/tp6/flexible1.css');
+    loadFile('f2', '/data/tp6/flexible2.css');
+    loadFile('f2b', '/data/tp6/flexible2(plusgros).css');
+    loadFile('f3', '/data/tp6/flexible3.css');
+    loadFile('f4', '/data/tp6/flexible4.css');
+
+    const fileMap = {
+      f1: 'flexible1.html',
+      f2: 'flexible2.html',
+      f2b: 'flexible2(plusgros).html',
+      f3: 'flexible3.html',
+      f4: 'flexible4.html'
+    };
+
+    const iframe = document.getElementById('tp6-frame');
+    const container = document.getElementById('browser-container');
+
+    document.querySelectorAll('.code-tabs button').forEach(button => {
+      button.addEventListener('click', () => {
+        const tab = button.getAttribute('data-tab');
+        document.querySelectorAll('.code-block').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll('.code-tabs button').forEach(btn => btn.classList.remove('active-tab'));
+        document.getElementById(tab).classList.add('active');
+        button.classList.add('active-tab');
+
+        // Met à jour l'iframe si visible
+        if (container.style.display === 'block') {
+          iframe.src = `/data/tp6/${fileMap[tab]}`;
+        }
+      });
+    });
+
+    document.getElementById('launch-frame').addEventListener('click', () => {
+      const activeTab = document.querySelector('.code-tabs button.active-tab').dataset.tab;
+      const isVisible = container.style.display === 'block';
+
+      container.style.display = isVisible ? 'none' : 'block';
+
+      if (!isVisible) {
+        iframe.src = `/data/tp6/${fileMap[activeTab]}`;
+      }
+    });
+  </script>
+
+  <style>
+    .code-tabs {
+      margin-top: 2rem;
+    }
+    .code-tabs button {
+      margin-right: 0.5rem;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+    }
+    .active-tab {
+      background-color: #4d7298;
+      color: white;
+      border: none;
+      border-radius: 0.5rem;
+    }
+    .code-block {
+      display: none;
+      background: #f4f4f4;
+      color: #333;
+      padding: 1rem;
+      overflow-x: auto;
+      border-radius: 0.5rem;
+      margin-top: 1rem;
+      font-family: monospace;
+      white-space: pre;
+    }
+    .code-block.active {
+      display: block;
+    }
+    .browser-mockup {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-top: 2rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .browser-header {
+      background: #eee;
+      padding: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .browser-header .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .browser-header .red { background: #ff5f56; }
+    .browser-header .yellow { background: #ffbd2e; }
+    .browser-header .green { background: #27c93f; }
+    .url-bar {
+      background: white;
+      border: 1px solid #ccc;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      flex-grow: 1;
+    }
+    .browser-frame {
+      width: 100%;
+      height: 500px;
+      border: none;
+    }
+  </style>
+</Layout>

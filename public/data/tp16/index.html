@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>TP16 - json-server</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 2rem;
+      }
+
+      h1 {
+        color: #4d7298;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      li {
+        background: #f1f1f1;
+        margin-bottom: 0.5rem;
+        padding: 0.5rem;
+        border-radius: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Liste des restaurants (console pour détails)</h1>
+    <ul id="restaurant-list"></ul>
+
+    <script type="module">
+      import "./app.ts";
+
+      // Tu peux ajouter ici une simple requête pour afficher les noms :
+      async function displayRestaurants() {
+        const res = await fetch("http://localhost:3000/restaurants");
+        const data = await res.json();
+        const ul = document.getElementById("restaurant-list");
+        data.forEach((r) => {
+          const li = document.createElement("li");
+          li.textContent = `${r.name} (${r.description})`;
+          ul.appendChild(li);
+        });
+      }
+
+      displayRestaurants();
+    </script>
+  </body>
+</html>

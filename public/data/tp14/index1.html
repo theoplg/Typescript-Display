@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>TP14 - Exercice 1</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <h1>TP14 - Exercice 1 : Liste de tremblements de terre</h1>
+    <div id="log" class="log-container"></div>
+
+    <script>
+      const originalLog = console.log;
+      console.log = function (msg) {
+        originalLog(msg);
+        const output = document.getElementById("log");
+        if (output) {
+          const p = document.createElement("p");
+          p.textContent = msg;
+          output.appendChild(p);
+        }
+      };
+    </script>
+
+    <script type="module" src="/data/tp14/app.js"></script>
+  </body>
+</html>

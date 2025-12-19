@@ -1,0 +1,11 @@
+ul {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}

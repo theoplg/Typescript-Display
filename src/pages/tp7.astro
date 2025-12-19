@@ -1,0 +1,137 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout>
+  <h2>TP7 : fat arrow</h2>
+
+  <section class="readme">
+    <h3>Comment j'ai réalisé ce TP</h3>
+    <p>Ce TP introduit la gestion des événements DOM. L'objectif est d’écouter les clics de l'utilisateur sur la page et d’afficher les coordonnées du clic dans la console.</p>
+    <ul>
+      <li>Un <code>addEventListener</code> est attaché au document pour l’événement <code>click</code>.</li>
+      <li>À chaque clic, un objet <code>MouseEvent</code> est automatiquement passé à la fonction.</li>
+      <li>On extrait <code>event.clientX</code> et <code>event.clientY</code> pour afficher les coordonnées du clic.</li>
+    </ul>
+  </section>
+
+  <div class="code-tabs">
+    <button class="active-tab" data-tab="astro">index.astro</button>
+    <button data-tab="ts">app.ts</button>
+  </div>
+
+  <pre id="astro" class="code-block active"></pre>
+  <pre id="ts" class="code-block"></pre>
+
+  <button id="launch-frame">Lancer le TP</button>
+  <div class="browser-mockup" style="display: none;" id="browser-container">
+    <div class="browser-header">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+      <span class="url-bar">http://localhost:3000</span>
+    </div>
+    <iframe id="tp7-frame" class="browser-frame"></iframe>
+  </div>
+
+  <script type="module" defer>
+    async function loadFile(tab, path) {
+      const res = await fetch(path);
+      const code = await res.text();
+      document.getElementById(tab).textContent = code;
+    }
+
+    loadFile('astro', '/data/tp7/index.astro');
+    loadFile('ts', '/data/tp7/app.ts');
+
+    const iframe = document.getElementById('tp7-frame');
+    const container = document.getElementById('browser-container');
+
+    document.querySelectorAll('.code-tabs button').forEach(button => {
+      button.addEventListener('click', () => {
+        const tab = button.getAttribute('data-tab');
+        document.querySelectorAll('.code-block').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll('.code-tabs button').forEach(btn => btn.classList.remove('active-tab'));
+        document.getElementById(tab).classList.add('active');
+        button.classList.add('active-tab');
+
+        // recharge iframe si visible
+        if (container.style.display === 'block') {
+          iframe.src = '/data/tp7/index.html';
+        }
+      });
+    });
+
+    document.getElementById('launch-frame').addEventListener('click', () => {
+      const isVisible = container.style.display === 'block';
+      container.style.display = isVisible ? 'none' : 'block';
+      if (!isVisible) {
+        iframe.src = '/data/tp7/index.html';
+      }
+    });
+  </script>
+
+  <style>
+    .code-tabs { margin-top: 2rem; }
+    .code-tabs button {
+      margin-right: 0.5rem;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+    }
+    .active-tab {
+      background-color: #4d7298;
+      color: white;
+      border: none;
+      border-radius: 0.5rem;
+    }
+    .code-block {
+      display: none;
+      background: #f4f4f4;
+      color: #333;
+      padding: 1rem;
+      overflow-x: auto;
+      border-radius: 0.5rem;
+      margin-top: 1rem;
+      font-family: monospace;
+      white-space: pre;
+    }
+    .code-block.active {
+      display: block;
+    }
+    .browser-mockup {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-top: 2rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .browser-header {
+      background: #eee;
+      padding: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .browser-header .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .browser-header .red { background: #ff5f56; }
+    .browser-header .yellow { background: #ffbd2e; }
+    .browser-header .green { background: #27c93f; }
+    .url-bar {
+      background: white;
+      border: 1px solid #ccc;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      flex-grow: 1;
+    }
+    .browser-frame {
+      width: 100%;
+      height: 400px;
+      border: none;
+    }
+  </style>
+</Layout>

@@ -1,0 +1,35 @@
+[
+  {
+    "title": "Titre Exemple 1",
+    "artist": {
+      "name": "Artiste 1"
+    },
+    "album": {
+      "title": "Album 1",
+      "cover_small": "https://via.placeholder.com/56"
+    },
+    "preview": "https://cdns-preview-1.dzcdn.net/stream/c-1.mp3"
+  },
+  {
+    "title": "Titre Exemple 2",
+    "artist": {
+      "name": "Artiste 2"
+    },
+    "album": {
+      "title": "Album 2",
+      "cover_small": "https://via.placeholder.com/56"
+    },
+    "preview": "https://cdns-preview-2.dzcdn.net/stream/c-2.mp3"
+  },
+  {
+    "title": "Titre Exemple 3",
+    "artist": {
+      "name": "Artiste 3"
+    },
+    "album": {
+      "title": "Album 3",
+      "cover_small": "https://via.placeholder.com/56"
+    },
+    "preview": "https://cdns-preview-3.dzcdn.net/stream/c-3.mp3"
+  }
+]

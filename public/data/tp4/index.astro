@@ -1,0 +1,32 @@
+---
+const size = 11;
+---
+<html>
+  <head>
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 30%;
+      }
+      td, th {
+        border: 1px solid black;
+        padding: 10px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Tableau 11x11</h1>
+    <table>
+      <tbody>
+        {Array.from({ length: size }).map((_, row) => (
+          <tr>
+            {Array.from({ length: size }).map((_, col) => (
+              <td>{row + 1}, {col + 1}</td>
+            ))}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </body>
+</html>

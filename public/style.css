@@ -1,0 +1,125 @@
+body {
+  font-family: "Segoe UI", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff;
+  color: #333;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+header {
+  background: #e0f7f4;
+  border-bottom: 2px solid #2acfcf;
+  color: #2acfcf;
+}
+
+header h1 {
+  margin: 0;
+}
+
+nav {
+  display: flex;
+  flex-wrap: no wrap; /* ou nowrap si tu veux forcer une seule ligne */
+  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+nav a {
+  margin-right: 1rem;
+  color: #2acfcf;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+main {
+  padding: 2rem 0;
+}
+
+button {
+  background-color: #2acfcf;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #26b4b4;
+}
+
+.code-tabs button {
+  margin-right: 1rem;
+  background: #eee;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  padding: 0.4rem 0.6rem;
+}
+
+.code-tabs button.active-tab {
+  background-color: #2acfcf;
+  color: white;
+}
+
+.code-block {
+  display: none;
+  background: #f4f4f4;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  white-space: pre-wrap;
+  margin-bottom: 1rem;
+}
+
+.code-block.active {
+  display: block;
+}
+
+footer {
+  background: #f0f0f0;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  color: #666;
+  border-top: 1px solid #ccc;
+}
+
+.terminal-box {
+  background-color: #2d2d2d;
+  color: #f8f8f2;
+  border-radius: 10px;
+  padding: 1rem;
+  font-family: monospace;
+  margin: 1.5rem 0;
+  position: relative;
+}
+
+.terminal-header {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.8rem;
+}
+
+.terminal-header .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot.red {
+  background-color: #ff5f56;
+}
+
+.dot.yellow {
+  background-color: #ffbd2e;
+}
+
+.dot.green {
+  background-color: #27c93f;
+}

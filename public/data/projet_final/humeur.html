@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Choisissez votre humeur</title>
+    <style>
+      body {
+        font-family: system-ui, -apple-system, sans-serif;
+        max-width: 900px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+        background: #1a1a2e;
+        color: #eee;
+      }
+      h1,
+      h2 {
+        color: #4d7298;
+        text-align: center;
+      }
+      .mood-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: center;
+        margin-top: 2rem;
+      }
+      button {
+        padding: 0.7rem 1.5rem;
+        background-color: #4d7298;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1rem;
+      }
+      button:hover {
+        background-color: #5d82a8;
+      }
+      #player-container {
+        margin-top: 2rem;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>🎧 Choisissez votre humeur</h1>
+
+    <div class="mood-buttons">
+      <button onclick="loadPlayer('chill')">😌 Chill</button>
+      <button onclick="loadPlayer('workout')">🔥 Motivé</button>
+      <button onclick="loadPlayer('sad')">😢 Triste</button>
+      <button onclick="loadPlayer('pop')">😊 Heureux</button>
+      <button onclick="loadPlayer('love')">💔 Cœur brisé</button>
+      <button onclick="loadPlayer('relax')">😴 Détente</button>
+      <button onclick="loadPlayer('party')">🎉 Soirée</button>
+    </div>
+
+    <div id="player-container"></div>
+
+    <script src="public.js"></script>
+  </body>
+</html>

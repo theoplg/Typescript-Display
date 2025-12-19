@@ -1,0 +1,74 @@
+---
+// src/pages/index.astro
+
+import { fetchPlaylist } from './fetchPlaylist';
+
+const tracks = await fetchPlaylist();
+---
+
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Top 100 France 2023</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 2rem;
+        background-color: #f9f9f9;
+      }
+      ul {
+        list-style: none;
+        padding: 0;x
+      }
+      li {
+        background: #fff;
+        margin-bottom: 1rem;
+        padding: 1rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      h3 {
+        margin: 0 0 0.5rem 0;
+      }
+      p {
+        margin: 0.25rem 0;
+      }
+      img {
+        width: 56px;
+        height: 56px;
+        border-radius: 4px;
+        margin-right: 1rem;
+        vertical-align: middle;
+      }
+      .track-info {
+        display: flex;
+        align-items: center;
+      }
+      .track-details {
+        flex: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Top 100 France 2023</h1>
+    <ul>
+      {tracks.map((track, index) => (
+        <li>
+          <div class="track-info">
+            <img src={track.album.cover_small} alt="cover" />
+            <div class="track-details">
+              <h3>{index + 1}. {track.title}</h3>
+              <p>{track.artist.name}</p>
+              <p>{track.album.title}</p>
+            </div>
+          </div>
+          <audio controls preload="none">
+            <source src={track.preview} type="audio/mpeg" />
+            Votre navigateur ne supporte pas l'élément audio.
+          </audio>
+        </li>
+      ))}
+    </ul>
+  </body>
+</html>

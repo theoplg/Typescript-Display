@@ -1,0 +1,122 @@
+---
+---
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Recherche d'adresse</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap');
+
+      :root {
+        --primary: #ff6b81;
+        --secondary: #f8d486;
+        --bg: #fff4ec;
+        --text: #2f2f2f;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Rubik', sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        margin: 0;
+        padding: 2rem;
+        max-width: 900px;
+        margin-inline: auto;
+      }
+
+      h1 {
+        text-align: center;
+        color: var(--primary);
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+        text-shadow: 1px 1px 0 white;
+      }
+
+      form {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 2rem;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      input[type="text"] {
+        flex: 1;
+        padding: 0.9rem;
+        font-size: 1rem;
+        border: 2px solid var(--primary);
+        border-radius: 12px;
+        background-color: white;
+        outline: none;
+        transition: border-color 0.2s;
+      }
+
+      input:focus {
+        border-color: var(--secondary);
+      }
+
+      button {
+        padding: 0.9rem 1.5rem;
+        background-color: var(--primary);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        font-size: 1rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: transform 0.1s ease;
+      }
+
+      button:hover {
+        background-color: #ff4c66;
+        transform: scale(1.05);
+      }
+
+      ul {
+        list-style: none;
+        padding-left: 0;
+      }
+
+      li {
+        background: linear-gradient(135deg, #ffe5ec, #ffd4dc);
+        padding: 1rem 1.5rem;
+        margin-bottom: 1.2rem;
+        border-radius: 16px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+        transition: transform 0.2s;
+      }
+
+      li:hover {
+        transform: translateY(-4px);
+      }
+
+      li strong {
+        font-size: 1.2rem;
+        color: var(--primary);
+      }
+
+      p {
+        text-align: center;
+        font-style: italic;
+        opacity: 0.6;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>🎯 Recherche d'adresse</h1>
+
+    <form id="search-form">
+      <input id="search-input" type="text" placeholder="Tape une adresse, genre '8 bd du port'..." />
+      <button type="submit">Rechercher</button>
+    </form>
+
+    <div id="results"></div>
+
+    <script type="module" src="/scripts/Addres.js"></script>
+  </body>
+</html>

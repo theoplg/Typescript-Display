@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Top 100 France 2023 (Mock)</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 2rem;
+        background-color: #f9f9f9;
+      }
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+      li {
+        background: #fff;
+        margin-bottom: 1rem;
+        padding: 1rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      .track-info {
+        display: flex;
+        align-items: center;
+      }
+      .track-details {
+        flex: 1;
+      }
+      img {
+        width: 56px;
+        height: 56px;
+        border-radius: 4px;
+        margin-right: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Top 100 (exemple local)</h1>
+    <ul id="trackList"></ul>
+
+    <script type="module">
+      async function fetchPlaylist() {
+        const res = await fetch("top100.json");
+        const data = await res.json();
+        return data;
+      }
+
+      async function renderTracks() {
+        const tracks = await fetchPlaylist();
+        const ul = document.getElementById("trackList");
+        tracks.forEach((track, index) => {
+          const li = document.createElement("li");
+          li.innerHTML = `
+            <div class="track-info">
+              <img src="${track.album.cover_small}" alt="cover" />
+              <div class="track-details">
+                <h3>${index + 1}. ${track.title}</h3>
+                <p>${track.artist.name}</p>
+                <p>${track.album.title}</p>
+              </div>
+            </div>
+            <audio controls preload="none">
+              <source src="${track.preview}" type="audio/mpeg" />
+              Votre navigateur ne supporte pas l'élément audio.
+            </audio>
+          `;
+          ul.appendChild(li);
+        });
+      }
+
+      renderTracks();
+    </script>
+  </body>
+</html>

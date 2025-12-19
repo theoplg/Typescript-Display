@@ -1,0 +1,19 @@
+<body>
+  TP8 actif — les résultats s'affichent dans la console du navigateur.:
+  <div id="log" style="margin-top: 2rem; font-family: monospace; color: #333;"></div>
+
+  <script>
+    function print(msg) {
+      console.log(msg);
+      const output = document.getElementById("log");
+      if (output) {
+        const p = document.createElement("p");
+        p.textContent = msg;
+        output.appendChild(p);
+      }
+    }
+    console.log = print;
+  </script>
+
+  <script src="/data/tp8/app.js"></script>
+</body>

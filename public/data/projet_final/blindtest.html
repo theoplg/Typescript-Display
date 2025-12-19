@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blind Test Deezer</title>
+    <style>
+      body {
+        font-family: system-ui, -apple-system, sans-serif;
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+        background: #1a1a2e;
+        color: #eee;
+        text-align: center;
+      }
+      h1 {
+        color: #4d7298;
+      }
+      button {
+        padding: 0.7rem 1.5rem;
+        background-color: #4d7298;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1rem;
+      }
+      button:hover {
+        background-color: #5d82a8;
+      }
+      #player-zone {
+        margin-top: 2rem;
+      }
+      #answer-zone {
+        margin-top: 1.5rem;
+      }
+      input {
+        padding: 0.6rem;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        width: 60%;
+        font-size: 1rem;
+      }
+      #feedback {
+        margin-top: 1rem;
+        font-weight: bold;
+      }
+      #score {
+        margin-top: 0.5rem;
+        font-weight: bold;
+        color: #4d7298;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>🎵 Blind Test Deezer</h1>
+
+    <p>Devine le titre de la musique 🎧</p>
+
+    <div id="blindtest-container">
+      <button onclick="startBlindTest()">▶️ Lancer un extrait</button>
+
+      <div id="player-zone"></div>
+
+      <div id="answer-zone" style="display: none">
+        <input id="user-answer" type="text" placeholder="Votre réponse..." />
+        <button onclick="checkAnswer()">Valider</button>
+      </div>
+
+      <p id="feedback"></p>
+      <p id="score">Score : 0</p>
+    </div>
+
+    <script src="blindtest.js"></script>
+  </body>
+</html>

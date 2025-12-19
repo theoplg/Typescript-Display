@@ -1,0 +1,151 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout>
+  <h2>Projet Final : Moodeezer 🎵</h2>
+
+  <section class="readme">
+    <h3>Description du projet</h3>
+    <p>Moodeezer est une application web qui utilise l'API de Deezer pour créer des expériences musicales interactives :</p>
+    <ul>
+      <li><strong>Blind Test</strong> : Devinez le titre des chansons populaires</li>
+      <li><strong>Playlists par humeur</strong> : Trouvez la musique parfaite selon votre état d'esprit (chill, motivé, triste, heureux, etc.)</li>
+      <li><strong>Lecteur intégré</strong> : Écoutez directement les morceaux grâce au widget Deezer</li>
+    </ul>
+    <p>Le projet utilise JavaScript côté client pour interagir avec l'API Deezer et créer une expérience utilisateur fluide.</p>
+  </section>
+
+  <div class="code-tabs">
+    <button class="active-tab" data-tab="blindtest">blindtest.js</button>
+    <button data-tab="public">public.js</button>
+    <button data-tab="deezer">deezer.js</button>
+  </div>
+
+  <pre id="blindtest" class="code-block active"><code class="language-javascript"></code></pre>
+  <pre id="public" class="code-block"><code class="language-javascript"></code></pre>
+  <pre id="deezer" class="code-block"><code class="language-javascript"></code></pre>
+
+  <div style="margin-top: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+    <button id="launch-index">Page d'accueil</button>
+    <button id="launch-blindtest">Blind Test</button>
+    <button id="launch-humeur">Playlists par humeur</button>
+  </div>
+
+  <div class="browser-mockup" style="display: none;" id="browser-container">
+    <div class="browser-header">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+      <span class="url-bar">http://localhost:3000</span>
+    </div>
+    <iframe id="projet-frame" class="browser-frame"></iframe>
+  </div>
+
+  <script type="module" defer>
+    async function loadFile(tab, path) {
+      const res = await fetch(path);
+      const code = await res.text();
+      document.querySelector(`#${tab} code`).textContent = code;
+    }
+
+    loadFile('blindtest', '/data/projet_final/blindtest.js');
+    loadFile('public', '/data/projet_final/public.js');
+    loadFile('deezer', '/data/projet_final/deezer.js');
+
+    const iframe = document.getElementById('projet-frame');
+    const container = document.getElementById('browser-container');
+
+    document.getElementById('launch-index').addEventListener('click', () => {
+      container.style.display = 'block';
+      iframe.src = '/data/projet_final/index.html';
+    });
+
+    document.getElementById('launch-blindtest').addEventListener('click', () => {
+      container.style.display = 'block';
+      iframe.src = '/data/projet_final/blindtest.html';
+    });
+
+    document.getElementById('launch-humeur').addEventListener('click', () => {
+      container.style.display = 'block';
+      iframe.src = '/data/projet_final/humeur.html';
+    });
+
+    document.querySelectorAll('.code-tabs button').forEach(button => {
+      button.addEventListener('click', () => {
+        const tab = button.getAttribute('data-tab');
+        document.querySelectorAll('.code-block').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll('.code-tabs button').forEach(btn => btn.classList.remove('active-tab'));
+        document.getElementById(tab).classList.add('active');
+        button.classList.add('active-tab');
+      });
+    });
+  </script>
+
+  <style>
+    .code-tabs {
+      margin-top: 2rem;
+    }
+    .code-tabs button {
+      margin-right: 0.5rem;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+    }
+    .active-tab {
+      background-color: #4d7298;
+      color: white;
+      border: none;
+      border-radius: 0.5rem;
+    }
+    .code-block {
+      display: none;
+      background: #f4f4f4;
+      color: #333;
+      padding: 1rem;
+      overflow-x: auto;
+      border-radius: 0.5rem;
+      margin-top: 1rem;
+      font-family: monospace;
+      white-space: pre;
+    }
+    .code-block.active {
+      display: block;
+    }
+    .browser-mockup {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-top: 2rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .browser-header {
+      background: #eee;
+      padding: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .browser-header .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .browser-header .red { background: #ff5f56; }
+    .browser-header .yellow { background: #ffbd2e; }
+    .browser-header .green { background: #27c93f; }
+    .url-bar {
+      background: white;
+      border: 1px solid #ccc;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      flex-grow: 1;
+    }
+    .browser-frame {
+      width: 100%;
+      height: 600px;
+      border: none;
+    }
+  </style>
+</Layout>

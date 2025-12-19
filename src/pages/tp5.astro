@@ -1,0 +1,132 @@
+---
+// src/pages/tp5.astro
+import Layout from '../layouts/Layout.astro';
+---
+<Layout>
+  <h2>TP5 : Projet Punto </h2>
+    <section class="readme">
+    <h3>Comment j'ai réalisé ce TP</h3>
+    <p>Le fichier <code>punto.js</code> contient toute la logique du jeu. J'ai utilisé deux matrices pour représenter la grille de jeu : une pour les valeurs des cartes et une autre pour les couleurs.</p>
+    
+    <p>Chaque joueur possède un deck de cartes numérotées de 1 à 9 (en double). La fonction <code>drawCard</code> permet à un joueur de piocher une carte aléatoire depuis son deck. Cette carte est stockée dans <code>currentCard</code> et doit être posée avant de pouvoir rejouer.</p>
+    
+    <p>Quand une case est cliquée, la fonction <code>clickedOnCell</code> vérifie si le placement est valide en utilisant plusieurs fonctions :</p>
+    <ul>
+        <li><code>isEmpty</code> : vérifie si une case est vide,</li>
+        <li><code>isCorrectAdjacency</code> : assure que la carte est posée à côté d'une autre,</li>
+        <li><code>isCorrectPlacement</code> : applique les règles de placement et de recouvrement,</li>
+        <li><code>isWithinLimits</code> : empêche les placements trop éloignés.</li>
+    </ul>
+    
+    <p>La gestion du tour à tour repose sur la variable <code>currentPlayerIndex</code> qui indique quel joueur doit jouer. Après chaque placement valide, on incrémente cet index pour passer au joueur suivant dans la liste (on le fait modulo4 à chaque fois). On empêche un joueur de poser une carte tant qu'il n’a pas pioché, et on ne peut pas repiocher tant que la carte précédente n’est pas posée. Le premier tour est automatique grâce à la fonction <code>PremierTour()</code>.</p>
+
+    <p>La victoire est détectée avec la fonction <code>hasWin</code>, qui vérifie si un joueur a aligné 4 cartes de sa couleur horizontalement, verticalement ou en diagonale.</p>
+    </section>
+
+
+  <div class="code-tabs">
+    <button class="active-tab" data-tab="astro">index.astro</button>
+    <button data-tab="js">punto.js</button>
+    <button data-tab="css">style.css</button>
+  </div>
+
+  <pre id="astro" class="code-block active"><code class="language-astro"></code></pre>
+  <pre id="js" class="code-block"><code class="language-js"></code></pre>
+  <pre id="css" class="code-block"><code class="language-css"></code></pre>
+
+  <button id="launch-frame">Lancer le TP</button>
+  <div class="browser-mockup" style="display: none;" id="browser-container">
+    <div class="browser-header">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+      <span class="url-bar">http://localhost:3000/tp5</span>
+    </div>
+    <iframe id="tp5-frame" class="browser-frame"></iframe>
+  </div>
+
+  <script type="module" defer>
+    async function loadFile(tab, path) {
+      const res = await fetch(path);
+      const code = await res.text();
+      document.querySelector(`#${tab} code`).textContent = code;
+      Prism.highlightElement(document.querySelector(`#${tab} code`));
+    }
+
+    loadFile('astro', '/data/tp5/index.astro');
+    loadFile('js', '/data/tp5/punto.js');
+    loadFile('css', '/data/tp5/style.css');
+
+    document.querySelectorAll('.code-tabs button').forEach(button => {
+      button.addEventListener('click', () => {
+        const tab = button.getAttribute('data-tab');
+        document.querySelectorAll('.code-block').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll('.code-tabs button').forEach(btn => btn.classList.remove('active-tab'));
+        document.getElementById(tab).classList.add('active');
+        button.classList.add('active-tab');
+      });
+    });
+
+    document.getElementById('launch-frame').addEventListener('click', () => {
+      const container = document.getElementById('browser-container');
+      const iframe = document.getElementById('tp5-frame');
+      const isVisible = container.style.display === 'block';
+      container.style.display = isVisible ? 'none' : 'block';
+
+      if (!isVisible) {
+        fetch('/data/tp5/index.html')
+          .then(res => res.text())
+          .then(html => {
+            const doc = iframe.contentDocument || iframe.contentWindow.document;
+            doc.open();
+            doc.write(html);
+            doc.close();
+          });
+      }
+    });
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-astro.min.js"></script>
+
+  <style>
+    .browser-mockup {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-top: 2rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .browser-header {
+      background: #eee;
+      padding: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .browser-header .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .browser-header .red { background: #ff5f56; }
+    .browser-header .yellow { background: #ffbd2e; }
+    .browser-header .green { background: #27c93f; }
+    .url-bar {
+      background: white;
+      border: 1px solid #ccc;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      flex-grow: 1;
+    }
+    .browser-frame {
+      width: 100%;
+      height: 600px;
+      border: none;
+    }
+  </style>
+</Layout>

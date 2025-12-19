@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>TP18 - Web Components</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 2rem;
+        background-color: #f9f9f9;
+      }
+      h1 {
+        color: #4d7298;
+      }
+      custom-element,
+      date-time,
+      greet-custom {
+        display: block;
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>TP18 - Démonstration des Web Components</h1>
+
+    <hello-world></hello-world>
+    <hello-name></hello-name>
+    <hello-name name="Charlotte"></hello-name>
+    <hello-name id="third" name="Eva"></hello-name>
+
+    <greet-custom></greet-custom>
+    <date-time></date-time>
+ 
+    <script type="module" src="./app2.js"></script>
+  </body>
+</html>

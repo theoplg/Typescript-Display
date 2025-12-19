@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>PUNTO</title>
+  <link rel="stylesheet" href="/data/tp5/style.css" />
+  <style>
+    body {
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-family: sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <h1>PUNTO</h1>
+
+  <div id="game-info">
+    <h2 id="current-player">Tour de :</h2>
+    <button id="draw-card-btn">Piocher carte</button>
+    <p>Carte : <span id="drawn-card">?</span></p>
+  </div>
+
+  <table id="grid" border="1" cellspacing="0" cellpadding="10" style="border-collapse: collapse; font-size: 24px;">
+    <tbody>
+      <tr>
+        <td data-i="0" data-j="0" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="0" data-j="1" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="0" data-j="2" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="0" data-j="3" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="0" data-j="4" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="0" data-j="5" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="0" data-j="6" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="0" data-j="7" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="0" data-j="8" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="0" data-j="9" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="0" data-j="10" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+      </tr>
+      <tr>
+        <td data-i="1" data-j="0" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="1" data-j="1" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="1" data-j="2" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="1" data-j="3" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="1" data-j="4" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="1" data-j="5" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="1" data-j="6" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="1" data-j="7" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="1" data-j="8" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="1" data-j="9" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="1" data-j="10" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+      </tr>
+      <tr>
+        <td data-i="2" data-j="0" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="2" data-j="1" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="2" data-j="2" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="2" data-j="3" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="2" data-j="4" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="2" data-j="5" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="2" data-j="6" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="2" data-j="7" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="2" data-j="8" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="2" data-j="9" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="2" data-j="10" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+      </tr>
+      <tr>
+        <td data-i="3" data-j="0" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="3" data-j="1" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="3" data-j="2" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="3" data-j="3" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="3" data-j="4" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="3" data-j="5" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="3" data-j="6" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="3" data-j="7" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="3" data-j="8" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="3" data-j="9" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="3" data-j="10" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+      </tr>
+      <tr>
+        <td data-i="4" data-j="0" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="4" data-j="1" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="4" data-j="2" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="4" data-j="3" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="4" data-j="4" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="4" data-j="5" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="4" data-j="6" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="4" data-j="7" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="4" data-j="8" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="4" data-j="9" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="4" data-j="10" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+      </tr>
+      <tr>
+        <td data-i="5" data-j="0" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="5" data-j="1" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="5" data-j="2" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="5" data-j="3" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="5" data-j="4" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="5" data-j="5" align="center" style="border:2px solid black;width:30px;height:30px;background-color:white;"></td>
+        <td data-i="5" data-j="6" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="5" data-j="7" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="5" data-j="8" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="5" data-j="9" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="5" data-j="10" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+      </tr>
+      <tr>
+        <td data-i="6" data-j="0" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="6" data-j="1" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="6" data-j="2" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="6" data-j="3" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="6" data-j="4" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="6" data-j="5" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="6" data-j="6" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="6" data-j="7" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="6" data-j="8" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="6" data-j="9" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="6" data-j="10" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+      </tr>
+      <tr>
+        <td data-i="7" data-j="0" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="7" data-j="1" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="7" data-j="2" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="7" data-j="3" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="7" data-j="4" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="7" data-j="5" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="7" data-j="6" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="7" data-j="7" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="7" data-j="8" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="7" data-j="9" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="7" data-j="10" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+      </tr>
+      <tr>
+        <td data-i="8" data-j="0" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="8" data-j="1" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="8" data-j="2" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="8" data-j="3" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="8" data-j="4" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="8" data-j="5" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="8" data-j="6" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="8" data-j="7" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="8" data-j="8" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="8" data-j="9" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="8" data-j="10" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+      </tr>
+      <tr>
+        <td data-i="9" data-j="0" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="9" data-j="1" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="9" data-j="2" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="9" data-j="3" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="9" data-j="4" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="9" data-j="5" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="9" data-j="6" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="9" data-j="7" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="9" data-j="8" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="9" data-j="9" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="9" data-j="10" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+      </tr>
+      <tr>
+        <td data-i="10" data-j="0" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="10" data-j="1" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="10" data-j="2" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="10" data-j="3" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="10" data-j="4" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="10" data-j="5" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="10" data-j="6" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="10" data-j="7" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="10" data-j="8" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="10" data-j="9" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+        <td data-i="10" data-j="10" align="center" style="border:2px solid black;width:30px;height:30px;background-color:lightgray;"></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script src="/data/tp5/punto.js"></script>
+</body>
+</html>

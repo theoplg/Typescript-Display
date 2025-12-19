@@ -1,0 +1,35 @@
+---
+const size = 11;
+---
+<head>
+  <title>PUNTO</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body style="height: 100vh; display: flex; flex-direction: column; align-items: center; margin: 0;">
+  <h1>PUNTO</h1>
+
+<body style="height: 100vh; display: flex; justify-content: center; align-items: center; margin: 0;">
+  <div id="game-info">
+  <h2 id="current-player">Tour de : </h2>
+  <button id="draw-card-btn">Piocher carte</button>
+  <p> Carte : <span id="drawn-card"> </span></p>
+</div>
+
+  <table id="grid" border="1" cellspacing="0" cellpadding="10" style="border-collapse: collapse; font-size: 24px;">
+    <tbody>
+      {Array.from({ length: size }).map((_, row) => (
+        <tr>
+          {Array.from({ length: size }).map((_, col) => (
+            <td
+              data-i={row}
+              data-j={col}
+              align="center"
+              style={`border: 2px solid black; width: 30px; height: 30px; background-color: ${row === Math.floor(size / 2) && col === Math.floor(size / 2) ? "white" : "lightgray"};`}
+            ></td>
+          ))}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+  <script src="../punto.js"></script>
+</body>

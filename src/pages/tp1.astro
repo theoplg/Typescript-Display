@@ -1,0 +1,96 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout>
+  <h2>TP1 : Hello World en TypeScript</h2>
+  <section class="readme">
+    <h3>Comment j'ai réalisé ce TP</h3>
+    <p>Ici il nous était juste demandé de transpiler avec cette commande le hello.ts :</p>
+
+    <div class="terminal-box">
+      <div class="terminal-header">
+        <span class="dot red"></span>
+        <span class="dot yellow"></span>
+        <span class="dot green"></span>
+      </div>
+      <code>tsc hello.ts</code>
+    </div>
+    <p>Et de l'exécuter avec cette commande :</p>
+    <div class="terminal-box">
+      <div class="terminal-header">
+        <span class="dot red"></span>
+        <span class="dot yellow"></span>
+        <span class="dot green"></span>
+      </div>
+      <code>bun hello.js</code>
+    </div>
+  </section>
+
+  <section class="readme">
+    <h4>Étape de transpilation</h4>
+    <p>Lors de la transpilation, TypeScript supprime le typage et transforme la syntaxe en JavaScript classique. 
+    Le code devient exécutable dans un navigateur ou un moteur JS comme Bun.</p>
+
+    <h4>Utilité du typage fort en TypeScript</h4>
+    <ul>
+      <li>✔️ Détection d’erreurs à la compilation (avant l’exécution)</li>
+      <li>✔️ Code plus clair et plus lisible</li>
+      <li>✔️ Moins d’erreurs lors de la maintenance</li>
+      <li>❌ JavaScript est faiblement typé et donc plus sujet aux bugs silencieux</li>
+    </ul>
+
+    <p>Le typage fort de TypeScript rend le code plus fiable, surtout dans les projets de grande taille ou en équipe.</p>
+  </section>
+
+  <div class="code-tabs">
+    <button type="button" class="active-tab" data-tab="ts">hello.ts</button>
+    <button type="button" data-tab="js">hello.js</button>
+  </div>
+
+  <pre id="ts" class="code-block active"><code class="language-ts"></code></pre>
+  <pre id="js" class="code-block"><code class="language-js"></code></pre>
+
+  <button id="run-ts">Exécuter hello.js</button>
+  <pre id="output"></pre>
+
+  <script type="module" defer>
+    async function loadFile(tab, path) {
+      const res = await fetch(path);
+      const code = await res.text();
+      document.querySelector(`#${tab} code`).textContent = code;
+      Prism.highlightElement(document.querySelector(`#${tab} code`));
+    }
+
+    loadFile('ts', '/data/tp1/hello.ts');
+    loadFile('js', '/data/tp1/hello.js');
+
+    document.querySelectorAll('.code-tabs button').forEach(button => {
+      button.addEventListener('click', () => {
+        const tab = button.getAttribute('data-tab');
+        document.querySelectorAll('.code-block').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll('.code-tabs button').forEach(btn => btn.classList.remove('active-tab'));
+        document.getElementById(tab).classList.add('active');
+        button.classList.add('active-tab');
+      });
+    });
+
+    document.getElementById('run-ts').addEventListener('click', () => {
+      const code = `var message1 = "Hello World";\nconsole.log(message1);`;
+      const output = document.getElementById('output');
+      try {
+        const log = console.log;
+        const logs = [];
+        console.log = (...args) => logs.push(args.join(' '));
+        new Function(code)();
+        console.log = log;
+        output.textContent = logs.join('\n');
+      } catch (e) {
+        output.textContent = 'Erreur : ' + e.message;
+      }
+    });
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-typescript.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+</Layout>

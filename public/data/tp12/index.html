@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>TP12</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <h1>TP12 - Gestion d'exceptions avec try/catch/finally</h1>
+    <div id="log" class="log-container"></div>
+
+    <script>
+      const originalLog = console.log; // sauvegarde de la vraie console
+
+      function print(msg) {
+        originalLog(msg); // appel non récursif
+        const output = document.getElementById("log");
+        if (output) {
+          const p = document.createElement("p");
+          p.textContent = msg;
+          output.appendChild(p);
+        }
+      }
+
+      console.log = print; // redirection propre
+    </script>
+
+    <script type="module" src="/data/tp12/app.js"></script>
+  </body>
+</html>
